@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Game Library - BHARATPLAY</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="library-container">
+
+        <h1>🎮 GAME LIBRARY</h1>
+
+        <p>
+            Choose your adventure and explore India's stories.
+        </p>
+
+        <br>
+
+
+        <!-- GAME 1 -->
+
+        <div class="game-card">
+
+            <div class="game-icon">🏺</div>
+
+            <h2>The Lost Seal</h2>
+
+            <p>
+                Discover a mysterious artifact from the
+                Indus Valley Civilization.
+            </p>
+
+            <a href="/game/lost-seal">
+                <button>🎮 PLAY GAME</button>
+            </a>
+
+        </div>
+
+
+        <!-- GAME 2 -->
+
+        <div class="game-card">
+
+            <div class="game-icon">👑</div>
+
+            <h2>The King's Messenger</h2>
+
+            <p>
+                Choose the safest route for an
+                ancient royal message.
+            </p>
+
+            <button disabled>🔒 COMING SOON</button>
+
+        </div>
+
+
+        <!-- GAME 3 -->
+
+        <div class="game-card">
+
+            <div class="game-icon">🦊</div>
+
+            <h2>Panchatantra: The Clever Choice</h2>
+
+            <p>
+                Make choices and discover the consequences
+                of your decisions.
+            </p>
+
+            <button disabled>🔒 COMING SOON</button>
+
+        </div>
+
+
+        <!-- GAME 4 -->
+
+        <div class="game-card">
+
+            <div class="game-icon">🏗️</div>
+
+            <h2>Build the Stepwell</h2>
+
+            <p>
+                Manage resources and build a traditional
+                Indian stepwell.
+            </p>
+
+            <button disabled>🔒 COMING SOON</button>
+
+        </div>
+
+
+        <!-- LEADERBOARD -->
+
+        <div class="game-card">
+
+            <div class="game-icon">🏆</div>
+
+            <h2>Leaderboard</h2>
+
+            <p>
+                See the top BHARATPLAY players
+                and their PlayPoints.
+            </p>
+
+            <a href="/leaderboard">
+                <button>🏆 VIEW LEADERBOARD</button>
+            </a>
+
+        </div>
+
+
+        <br>
+
+        <a href="/">
+            <button>🏠 HOME</button>
+        </a>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,1972 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>The Lost Seal - BHARATPLAY</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #050505;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        canvas {
+            display: block;
+        }
+
+
+        /* START SCREEN */
+
+        #startScreen {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #332416 0%,
+                    #0b0805 45%,
+                    #020202 100%
+                );
+
+        }
+
+
+        .startBox {
+
+            max-width: 700px;
+
+            padding: 50px;
+
+        }
+
+
+        .startBox h1 {
+
+            font-family: Georgia, serif;
+
+            font-size: 60px;
+
+            color: #d9a45c;
+
+            margin-bottom: 5px;
+
+            text-shadow:
+                0 0 25px rgba(217,164,92,0.4);
+
+        }
+
+
+        .startBox h2 {
+
+            color: #eee;
+
+            font-weight: normal;
+
+        }
+
+
+        .startBox p {
+
+            color: #bbb;
+
+            line-height: 1.7;
+
+        }
+
+
+        #startButton {
+
+            margin-top: 25px;
+
+            padding: 16px 35px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #b87535;
+
+            color: white;
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+        }
+
+
+        #startButton:hover {
+
+            background: #d08b45;
+
+        }
+
+
+        /* HUD */
+
+        #hud {
+
+            position: fixed;
+
+            top: 20px;
+
+            left: 20px;
+
+            z-index: 20;
+
+            width: 310px;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(0,0,0,0.68);
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+        }
+
+
+        #hud h2 {
+
+            margin-top: 0;
+
+            color: #d9a45c;
+
+            font-family: Georgia, serif;
+
+        }
+
+
+        #objective {
+
+            line-height: 1.6;
+
+            color: #ddd;
+
+        }
+
+
+        #points {
+
+            color: #ffd36a;
+
+            font-weight: bold;
+
+        }
+
+
+        #status {
+
+            margin-top: 10px;
+
+            color: #aaa;
+
+            font-size: 13px;
+
+        }
+
+
+        /* CONTROLS */
+
+        #controls {
+
+            position: fixed;
+
+            bottom: 20px;
+
+            left: 20px;
+
+            z-index: 20;
+
+            padding: 12px 18px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(0,0,0,0.65);
+
+            color: #ccc;
+
+            font-size: 14px;
+
+        }
+
+
+        /* CENTER */
+
+        #crosshair {
+
+            position: fixed;
+
+            left: 50%;
+
+            top: 50%;
+
+            width: 8px;
+
+            height: 8px;
+
+            margin-left: -4px;
+
+            margin-top: -4px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            box-shadow:
+                0 0 6px black;
+
+            z-index: 30;
+
+        }
+
+
+        /* INTERACTION */
+
+        #interaction {
+
+            position: fixed;
+
+            left: 50%;
+
+            bottom: 22%;
+
+            transform: translateX(-50%);
+
+            z-index: 30;
+
+            padding: 12px 22px;
+
+            border-radius: 8px;
+
+            background:
+                rgba(0,0,0,0.8);
+
+            display: none;
+
+            font-size: 16px;
+
+        }
+
+
+        /* MESSAGE */
+
+        #message {
+
+            position: fixed;
+
+            left: 50%;
+
+            bottom: 12%;
+
+            transform: translateX(-50%);
+
+            z-index: 40;
+
+            min-width: 300px;
+
+            max-width: 650px;
+
+            padding: 18px 25px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            background:
+                rgba(0,0,0,0.9);
+
+            display: none;
+
+        }
+
+
+        /* RESULT */
+
+        #result {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 90;
+
+            display: none;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                rgba(0,0,0,0.92);
+
+        }
+
+
+        .resultBox {
+
+            padding: 50px;
+
+        }
+
+
+        .resultBox h1 {
+
+            color: #d9a45c;
+
+            font-family: Georgia, serif;
+
+            font-size: 50px;
+
+        }
+
+
+        .resultBox h2 {
+
+            color: #ffd36a;
+
+        }
+
+
+        .resultBox button {
+
+            padding: 14px 25px;
+
+            margin: 8px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            background: #b87535;
+
+            color: white;
+
+            font-size: 16px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- START SCREEN -->
+
+<div id="startScreen">
+
+    <div class="startBox">
+
+        <h1>🏺 THE LOST SEAL</h1>
+
+        <h2>An Ancient Indian Mystery</h2>
+
+        <p>
+
+            An abandoned settlement hides a forgotten secret.
+
+            Explore the ruins, investigate ancient objects,
+
+            follow the clues and discover what happened to
+
+            the mysterious seal.
+
+        </p>
+
+        <p>
+
+            <b>W A S D</b> — Move
+
+            &nbsp; | &nbsp;
+
+            <b>MOUSE</b> — Look
+
+            &nbsp; | &nbsp;
+
+            <b>SHIFT</b> — Sprint
+
+            &nbsp; | &nbsp;
+
+            <b>E</b> — Investigate
+
+        </p>
+
+        <button id="startButton">
+
+            ENTER THE SETTLEMENT
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- HUD -->
+
+<div id="hud">
+
+    <h2>🏺 THE LOST SEAL</h2>
+
+    <div id="objective">
+
+        <b>OBJECTIVE</b><br>
+
+        Explore the settlement.
+
+    </div>
+
+    <br>
+
+    ⭐ PlayPoints:
+
+    <span id="points">0</span>
+
+    <div id="status">
+
+        Flashlight: ON
+
+    </div>
+
+</div>
+
+
+<!-- CONTROLS -->
+
+<div id="controls">
+
+    <b>W A S D</b> Move<br>
+
+    <b>MOUSE</b> Look around<br>
+
+    <b>SHIFT</b> Sprint<br>
+
+    <b>E</b> Investigate<br>
+
+    <b>ESC</b> Pause
+
+</div>
+
+
+<!-- CROSSHAIR -->
+
+<div id="crosshair"></div>
+
+
+<!-- INTERACTION -->
+
+<div id="interaction">
+
+    Press <b>E</b> to investigate
+
+</div>
+
+
+<!-- MESSAGE -->
+
+<div id="message"></div>
+
+
+<!-- RESULT -->
+
+<div id="result">
+
+    <div class="resultBox">
+
+        <h1>🏆 ADVENTURE COMPLETE</h1>
+
+        <p>
+
+            You discovered the Lost Seal.
+
+        </p>
+
+        <h2>
+
+            ⭐ PlayPoints:
+
+            <span id="finalPoints">0</span>
+
+        </h2>
+
+        <button onclick="goLeaderboard()">
+
+            🏆 VIEW LEADERBOARD
+
+        </button>
+
+        <button onclick="location.reload()">
+
+            🔄 PLAY AGAIN
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="importmap">
+
+{
+
+    "imports": {
+
+        "three":
+
+        "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+
+        "three/addons/":
+
+        "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+
+    }
+
+}
+
+</script>
+
+
+<script type="module">
+
+
+import * as THREE from
+"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
+
+import { PointerLockControls }
+from
+"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/PointerLockControls.js";
+
+
+/* ------------------------------------------------
+   BASIC SETUP
+------------------------------------------------ */
+
+
+const scene = new THREE.Scene();
+
+
+scene.background =
+    new THREE.Color(0x080705);
+
+
+scene.fog =
+    new THREE.FogExp2(
+        0x080705,
+        0.035
+    );
+
+
+const camera =
+    new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth /
+        window.innerHeight,
+        0.1,
+        1000
+    );
+
+
+camera.position.set(
+    0,
+    2,
+    15
+);
+
+
+const renderer =
+    new THREE.WebGLRenderer({
+        antialias: true
+    });
+
+
+renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+);
+
+
+renderer.setPixelRatio(
+    Math.min(
+        window.devicePixelRatio,
+        2
+    )
+);
+
+
+renderer.shadowMap.enabled = true;
+
+
+renderer.shadowMap.type =
+    THREE.PCFSoftShadowMap;
+
+
+document.body.appendChild(
+    renderer.domElement
+);
+
+
+/* ------------------------------------------------
+   FIRST PERSON CONTROLS
+------------------------------------------------ */
+
+
+const controls =
+    new PointerLockControls(
+        camera,
+        document.body
+    );
+
+
+scene.add(
+    controls.object
+);
+
+
+controls.pointerSpeed = 0.8;
+
+
+/* ------------------------------------------------
+   LIGHTING
+------------------------------------------------ */
+
+
+const moonLight =
+    new THREE.DirectionalLight(
+        0x8899aa,
+        0.7
+    );
+
+
+moonLight.position.set(
+    -20,
+    30,
+    -10
+);
+
+
+moonLight.castShadow = true;
+
+
+scene.add(
+    moonLight
+);
+
+
+const ambient =
+    new THREE.HemisphereLight(
+        0x445566,
+        0x120c08,
+        0.5
+    );
+
+
+scene.add(
+    ambient
+);
+
+
+/* ------------------------------------------------
+   FLASHLIGHT
+------------------------------------------------ */
+
+
+const flashlight =
+    new THREE.SpotLight(
+        0xffe0aa,
+        4,
+        32,
+        Math.PI / 7,
+        0.45,
+        1
+    );
+
+
+flashlight.castShadow = true;
+
+
+flashlight.position.set(
+    0,
+    0,
+    0
+);
+
+
+controls.object.add(
+    flashlight
+);
+
+
+const flashlightTarget =
+    new THREE.Object3D();
+
+
+flashlightTarget.position.set(
+    0,
+    0,
+    -10
+);
+
+
+controls.object.add(
+    flashlightTarget
+);
+
+
+flashlight.target =
+    flashlightTarget;
+
+
+/* ------------------------------------------------
+   MATERIALS
+------------------------------------------------ */
+
+
+const groundMaterial =
+    new THREE.MeshStandardMaterial({
+        color: 0x34291d,
+        roughness: 1
+    });
+
+
+const wallMaterial =
+    new THREE.MeshStandardMaterial({
+        color: 0x4a3928,
+        roughness: 0.95
+    });
+
+
+const woodMaterial =
+    new THREE.MeshStandardMaterial({
+        color: 0x2d1d12,
+        roughness: 1
+    });
+
+
+const stoneMaterial =
+    new THREE.MeshStandardMaterial({
+        color: 0x686054,
+        roughness: 1
+    });
+
+
+const potteryMaterial =
+    new THREE.MeshStandardMaterial({
+        color: 0x9b542e,
+        roughness: 0.9
+    });
+
+
+const sealMaterial =
+    new THREE.MeshStandardMaterial({
+        color: 0xd6a85c,
+        metalness: 0.4,
+        roughness: 0.35,
+        emissive: 0x3d260b
+    });
+
+
+/* ------------------------------------------------
+   GROUND
+------------------------------------------------ */
+
+
+const ground =
+    new THREE.Mesh(
+
+        new THREE.PlaneGeometry(
+            180,
+            180
+        ),
+
+        groundMaterial
+
+    );
+
+
+ground.rotation.x =
+    -Math.PI / 2;
+
+
+ground.receiveShadow = true;
+
+
+scene.add(ground);
+
+
+/* ------------------------------------------------
+   HELPERS
+------------------------------------------------ */
+
+
+const colliders = [];
+
+
+function createBox(
+    x,
+    y,
+    z,
+    width,
+    height,
+    depth,
+    material,
+    collision = true
+) {
+
+    const geometry =
+        new THREE.BoxGeometry(
+            width,
+            height,
+            depth
+        );
+
+
+    const mesh =
+        new THREE.Mesh(
+            geometry,
+            material
+        );
+
+
+    mesh.position.set(
+        x,
+        y,
+        z
+    );
+
+
+    mesh.castShadow = true;
+
+    mesh.receiveShadow = true;
+
+
+    scene.add(mesh);
+
+
+    if (collision) {
+
+        colliders.push({
+            mesh: mesh,
+            box: new THREE.Box3()
+        });
+
+    }
+
+
+    return mesh;
+
+}
+
+
+/* ------------------------------------------------
+   ANCIENT SETTLEMENT
+------------------------------------------------ */
+
+
+/* Main walls */
+
+
+createBox(
+    0,
+    3,
+    -55,
+    110,
+    6,
+    2,
+    wallMaterial
+);
+
+
+createBox(
+    -55,
+    3,
+    0,
+    2,
+    6,
+    110,
+    wallMaterial
+);
+
+
+createBox(
+    55,
+    3,
+    0,
+    2,
+    6,
+    110,
+    wallMaterial
+);
+
+
+createBox(
+    0,
+    3,
+    55,
+    110,
+    6,
+    2,
+    wallMaterial
+);
+
+
+/* ------------------------------------------------
+   WORKSHOP
+------------------------------------------------ */
+
+
+const workshop =
+    new THREE.Group();
+
+
+scene.add(workshop);
+
+
+createBox(
+    0,
+    3,
+    -35,
+    22,
+    6,
+    2,
+    wallMaterial
+);
+
+
+createBox(
+    -10,
+    3,
+    -25,
+    2,
+    6,
+    20,
+    wallMaterial
+);
+
+
+createBox(
+    10,
+    3,
+    -25,
+    2,
+    6,
+    20,
+    wallMaterial
+);
+
+
+/* roof */
+
+
+createBox(
+    0,
+    7,
+    -25,
+    24,
+    2,
+    22,
+    woodMaterial,
+    false
+);
+
+
+/* ------------------------------------------------
+   RUINS
+------------------------------------------------ */
+
+
+function createRuin(
+    x,
+    z
+) {
+
+    const h =
+        2 +
+        Math.random() * 3;
+
+
+    createBox(
+        x,
+        h / 2,
+        z,
+        2.5,
+        h,
+        2.5,
+        wallMaterial
+    );
+
+}
+
+
+for (
+    let i = 0;
+    i < 18;
+    i++
+) {
+
+    const x =
+        (Math.random() - 0.5) *
+        90;
+
+    const z =
+        (Math.random() - 0.5) *
+        90;
+
+
+    if (
+        Math.abs(x) < 15 &&
+        Math.abs(z) < 20
+    ) {
+
+        continue;
+
+    }
+
+
+    createRuin(
+        x,
+        z
+    );
+
+}
+
+
+/* ------------------------------------------------
+   TORCHES
+------------------------------------------------ */
+
+
+function createTorch(
+    x,
+    z
+) {
+
+    createBox(
+        x,
+        1.5,
+        z,
+        0.25,
+        3,
+        0.25,
+        woodMaterial,
+        false
+    );
+
+
+    const light =
+        new THREE.PointLight(
+            0xff8b32,
+            2,
+            10
+        );
+
+
+    light.position.set(
+        x,
+        3,
+        z
+    );
+
+
+    scene.add(light);
+
+
+    const flame =
+        new THREE.Mesh(
+
+            new THREE.SphereGeometry(
+                0.35,
+                8,
+                8
+            ),
+
+            new THREE.MeshBasicMaterial({
+                color: 0xff9b35
+            })
+
+        );
+
+
+    flame.position.set(
+        x,
+        3.4,
+        z
+    );
+
+
+    scene.add(flame);
+
+}
+
+
+createTorch(
+    -15,
+    -15
+);
+
+
+createTorch(
+    15,
+    -15
+);
+
+
+createTorch(
+    -20,
+    20
+);
+
+
+/* ------------------------------------------------
+   POTTERY
+------------------------------------------------ */
+
+
+const pottery =
+    new THREE.Mesh(
+
+        new THREE.CylinderGeometry(
+            0.8,
+            1.0,
+            1.4,
+            16
+        ),
+
+        potteryMaterial
+
+    );
+
+
+pottery.position.set(
+    -18,
+    0.7,
+    -5
+);
+
+
+pottery.castShadow = true;
+
+
+scene.add(pottery);
+
+
+/* ------------------------------------------------
+   ANCIENT STONE
+------------------------------------------------ */
+
+
+const ancientStone =
+    new THREE.Mesh(
+
+        new THREE.DodecahedronGeometry(
+            1.5,
+            0
+        ),
+
+        stoneMaterial
+
+    );
+
+
+ancientStone.position.set(
+    25,
+    1.5,
+    5
+);
+
+
+ancientStone.castShadow = true;
+
+
+scene.add(
+    ancientStone
+);
+
+
+/* ------------------------------------------------
+   HIDDEN SEAL
+------------------------------------------------ */
+
+
+const seal =
+    new THREE.Mesh(
+
+        new THREE.CylinderGeometry(
+            0.8,
+            0.8,
+            0.25,
+            32
+        ),
+
+        sealMaterial
+
+    );
+
+
+seal.rotation.x =
+    Math.PI / 2;
+
+
+seal.position.set(
+    0,
+    1.2,
+    -22
+);
+
+
+seal.visible = false;
+
+
+scene.add(seal);
+
+
+/* ------------------------------------------------
+   CLUE MARKER
+------------------------------------------------ */
+
+
+const clue =
+    new THREE.Mesh(
+
+        new THREE.BoxGeometry(
+            1.2,
+            1.2,
+            0.2
+        ),
+
+        new THREE.MeshStandardMaterial({
+            color: 0x80633e,
+            emissive: 0x201509
+        })
+
+    );
+
+
+clue.position.set(
+    -18,
+    1.4,
+    -5
+);
+
+
+scene.add(clue);
+
+
+/* ------------------------------------------------
+   GAME STATE
+------------------------------------------------ */
+
+
+let points = 0;
+
+
+let potteryFound = false;
+
+let stoneFound = false;
+
+let sealFound = false;
+
+
+let gameFinished = false;
+
+
+/* ------------------------------------------------
+   UI
+------------------------------------------------ */
+
+
+const objective =
+    document.getElementById(
+        "objective"
+    );
+
+
+const pointDisplay =
+    document.getElementById(
+        "points"
+    );
+
+
+const interaction =
+    document.getElementById(
+        "interaction"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+function setObjective(
+    text
+) {
+
+    objective.innerHTML =
+        "<b>OBJECTIVE</b><br>" +
+        text;
+
+}
+
+
+function addPoints(
+    amount
+) {
+
+    points += amount;
+
+
+    pointDisplay.innerText =
+        points;
+
+}
+
+
+function showMessage(
+    text
+) {
+
+    message.innerHTML =
+        text;
+
+
+    message.style.display =
+        "block";
+
+
+    setTimeout(
+        () => {
+
+            message.style.display =
+                "none";
+
+        },
+        3500
+    );
+
+}
+
+
+/* ------------------------------------------------
+   INTERACTION DISTANCE
+------------------------------------------------ */
+
+
+function playerDistance(
+    object
+) {
+
+    return camera.position.distanceTo(
+        object.position
+    );
+
+}
+
+
+/* ------------------------------------------------
+   INVESTIGATE
+------------------------------------------------ */
+
+
+function investigate() {
+
+
+    /* POTTERY */
+
+
+    if (
+        !potteryFound &&
+        playerDistance(pottery) < 4
+    ) {
+
+        potteryFound = true;
+
+
+        addPoints(10);
+
+
+        setObjective(
+            "Follow the markings to the ancient stone."
+        );
+
+
+        showMessage(
+            "🏺 You discovered a pottery fragment with mysterious symbols. +10 PlayPoints"
+        );
+
+
+        return;
+
+    }
+
+
+    /* STONE */
+
+
+    if (
+        potteryFound &&
+        !stoneFound &&
+        playerDistance(ancientStone) < 4
+    ) {
+
+        stoneFound = true;
+
+
+        addPoints(15);
+
+
+        seal.visible = true;
+
+
+        setObjective(
+            "Return to the workshop and search for the Lost Seal."
+        );
+
+
+        showMessage(
+            "🪨 The symbols match! Something is hidden inside the workshop. +15 PlayPoints"
+        );
+
+
+        return;
+
+    }
+
+
+    /* SEAL */
+
+
+    if (
+        stoneFound &&
+        !sealFound &&
+        playerDistance(seal) < 4
+    ) {
+
+        sealFound = true;
+
+
+        addPoints(50);
+
+
+        gameFinished = true;
+
+
+        setObjective(
+            "🏆 OBJECTIVE COMPLETE!"
+        );
+
+
+        showMessage(
+            "🏺 THE LOST SEAL HAS BEEN FOUND!"
+        );
+
+
+        setTimeout(
+            finishGame,
+            2500
+        );
+
+
+        return;
+
+    }
+
+
+    showMessage(
+        "Nothing useful here..."
+    );
+
+}
+
+
+/* ------------------------------------------------
+   KEYBOARD
+------------------------------------------------ */
+
+
+const keys = {};
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        keys[
+            event.code
+        ] = true;
+
+
+        if (
+            event.code === "KeyE"
+        ) {
+
+            investigate();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keyup",
+    event => {
+
+        keys[
+            event.code
+        ] = false;
+
+    }
+);
+
+
+/* ------------------------------------------------
+   COLLISION
+------------------------------------------------ */
+
+
+function canMoveTo(
+    position
+) {
+
+    const playerBox =
+        new THREE.Box3();
+
+
+    playerBox.setFromCenterAndSize(
+
+        position,
+
+        new THREE.Vector3(
+            1,
+            3,
+            1
+        )
+
+    );
+
+
+    for (
+        const collider
+        of colliders
+    ) {
+
+        collider.box.setFromObject(
+            collider.mesh
+        );
+
+
+        if (
+            playerBox.intersectsBox(
+                collider.box
+            )
+        ) {
+
+            return false;
+
+        }
+
+    }
+
+
+    return true;
+
+}
+
+
+/* ------------------------------------------------
+   MOVEMENT
+------------------------------------------------ */
+
+
+const velocity =
+    new THREE.Vector3();
+
+
+const direction =
+    new THREE.Vector3();
+
+
+let previousTime =
+    performance.now();
+
+
+function updateMovement(
+    delta
+) {
+
+    if (
+        !controls.isLocked
+    ) {
+
+        return;
+
+    }
+
+
+    const speed =
+        keys["ShiftLeft"] ||
+        keys["ShiftRight"]
+
+        ? 12
+
+        : 6;
+
+
+    direction.z =
+        Number(
+            keys["KeyW"]
+        ) -
+        Number(
+            keys["KeyS"]
+        );
+
+
+    direction.x =
+        Number(
+            keys["KeyD"]
+        ) -
+        Number(
+            keys["KeyA"]
+        );
+
+
+    direction.normalize();
+
+
+    velocity.x *=
+        0.85;
+
+
+    velocity.z *=
+        0.85;
+
+
+    if (
+        direction.length() > 0
+    ) {
+
+        velocity.z =
+            -direction.z *
+            speed;
+
+        velocity.x =
+            direction.x *
+            speed;
+
+    }
+
+
+    const oldPosition =
+        camera.position.clone();
+
+
+    controls.moveRight(
+        velocity.x * delta
+    );
+
+
+    controls.moveForward(
+        velocity.z * delta
+    );
+
+
+    camera.position.y =
+        2;
+
+
+    if (
+        !canMoveTo(
+            camera.position
+        )
+    ) {
+
+        camera.position.copy(
+            oldPosition
+        );
+
+    }
+
+}
+
+
+/* ------------------------------------------------
+   INTERACTION UI
+------------------------------------------------ */
+
+
+function updateInteraction() {
+
+
+    let nearby = false;
+
+
+    if (
+        !potteryFound &&
+        playerDistance(pottery) < 4
+    ) {
+
+        nearby = true;
+
+    }
+
+
+    if (
+        potteryFound &&
+        !stoneFound &&
+        playerDistance(ancientStone) < 4
+    ) {
+
+        nearby = true;
+
+    }
+
+
+    if (
+        stoneFound &&
+        !sealFound &&
+        playerDistance(seal) < 4
+    ) {
+
+        nearby = true;
+
+    }
+
+
+    interaction.style.display =
+        nearby && controls.isLocked
+        ? "block"
+        : "none";
+
+}
+
+
+/* ------------------------------------------------
+   START GAME
+------------------------------------------------ */
+
+
+document
+    .getElementById("startButton")
+    .addEventListener(
+        "click",
+        () => {
+
+            controls.lock();
+
+        }
+    );
+
+
+controls.addEventListener(
+    "lock",
+    () => {
+
+        document
+            .getElementById(
+                "startScreen"
+            )
+            .style.display =
+                "none";
+
+    }
+);
+
+
+controls.addEventListener(
+    "unlock",
+    () => {
+
+        if (
+            !gameFinished
+        ) {
+
+            document
+                .getElementById(
+                    "startScreen"
+                )
+                .style.display =
+                    "flex";
+
+        }
+
+    }
+);
+
+
+/* ------------------------------------------------
+   FINISH GAME
+------------------------------------------------ */
+
+
+function finishGame() {
+
+    document
+        .getElementById(
+            "finalPoints"
+        )
+        .innerText =
+            points;
+
+
+    document
+        .getElementById(
+            "result"
+        )
+        .style.display =
+            "flex";
+
+
+    controls.unlock();
+
+}
+
+
+window.goLeaderboard =
+    function() {
+
+        window.location.href =
+            "/leaderboard?score=" +
+            points;
+
+    };
+
+
+/* ------------------------------------------------
+   RESIZE
+------------------------------------------------ */
+
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        camera.aspect =
+            window.innerWidth /
+            window.innerHeight;
+
+
+        camera.updateProjectionMatrix();
+
+
+        renderer.setSize(
+            window.innerWidth,
+            window.innerHeight
+        );
+
+    }
+);
+
+
+/* ------------------------------------------------
+   ANIMATION
+------------------------------------------------ */
+
+
+function animate() {
+
+    requestAnimationFrame(
+        animate
+    );
+
+
+    const time =
+        performance.now();
+
+
+    const delta =
+        Math.min(
+            (time - previousTime) /
+            1000,
+            0.05
+        );
+
+
+    previousTime =
+        time;
+
+
+    updateMovement(
+        delta
+    );
+
+
+    updateInteraction();
+
+
+    /* Torch flicker */
+
+    scene.traverse(
+        object => {
+
+            if (
+                object instanceof
+                THREE.PointLight
+            ) {
+
+                object.intensity =
+                    1.8 +
+                    Math.random() *
+                    0.5;
+
+            }
+
+        }
+    );
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+}
+
+
+animate();
+
+
+</script>
+
+</body>
+
+</html>
