@@ -12,74 +12,106 @@
 
 <body>
 
-    <div class="hero">
+<nav class="navbar">
 
-        <h1>🇮🇳 BHARATPLAY</h1>
+    <div class="nav-logo">
+        🇮🇳 BHARATPLAY
+    </div>
 
-        <h2>Play. Explore. Remember India.</h2>
+    <div class="nav-links">
 
-        <p>
-            Discover India's rich history, culture and stories
-            through exciting interactive mini-games.
+        <a href="/library">Games</a>
+
+        <a href="/leaderboard">Leaderboard</a>
+
+        <span>👤 {{ username }}</span>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<section class="hero">
+
+    <div class="hero-overlay">
+
+        <p class="hero-small">
+            INDIA'S HERITAGE • REIMAGINED
         </p>
 
-        <p>
-            Make choices, explore the past and earn PlayPoints!
-        </p>
+        <h1>
+            PLAY INDIA'S<br>
+            EPIC STORIES
+        </h1>
 
-        <br>
+        <p>
+            Explore ancient civilizations, legendary stories
+            and cultural adventures through interactive games.
+        </p>
 
         <a href="/library">
-            <button>🎮 START PLAYING</button>
+
+            <button class="hero-button">
+                🎮 EXPLORE GAMES
+            </button>
+
         </a>
 
     </div>
 
-
-    <div class="features">
-
-        <div class="card">
-
-            <div class="emoji">🏺</div>
-
-            <h2>Explore History</h2>
-
-            <p>
-                Travel through India's fascinating past
-                using interactive stories.
-            </p>
-
-        </div>
+</section>
 
 
-        <div class="card">
+<section class="features">
 
-            <div class="emoji">🎯</div>
+    <div class="feature">
 
-            <h2>Make Choices</h2>
+        <span>🏺</span>
 
-            <p>
-                Your decisions change the outcome
-                of every adventure.
-            </p>
+        <h2>
+            Explore History
+        </h2>
 
-        </div>
-
-
-        <div class="card">
-
-            <div class="emoji">⭐</div>
-
-            <h2>Earn PlayPoints</h2>
-
-            <p>
-                Play smart, earn points and
-                climb the leaderboard.
-            </p>
-
-        </div>
+        <p>
+            Discover India's fascinating past
+            through interactive worlds.
+        </p>
 
     </div>
+
+
+    <div class="feature">
+
+        <span>🧭</span>
+
+        <h2>
+            Make Decisions
+        </h2>
+
+        <p>
+            Your choices shape your adventure.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <span>🏆</span>
+
+        <h2>
+            Earn PlayPoints
+        </h2>
+
+        <p>
+            Play well and climb the leaderboard.
+        </p>
+
+    </div>
+
+</section>
 
 </body>
 

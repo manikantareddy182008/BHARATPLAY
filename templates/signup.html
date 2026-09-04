@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Sign Up - BHARATPLAY</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="auth-page">
+
+<div class="auth-background">
+
+    <div class="auth-card">
+
+        <div class="brand">🇮🇳 BHARATPLAY</div>
+
+        <p class="tagline">
+            Begin your adventure.
+        </p>
+
+        <h2>Create Account</h2>
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="username"
+                placeholder="👤 Choose Username"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="🔒 Create Password"
+                required
+            >
+
+            <button class="primary-button">
+                🚀 CREATE ACCOUNT
+            </button>
+
+        </form>
+
+        <p class="switch">
+
+            Already a player?
+
+            <a href="/login">
+                Login
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
